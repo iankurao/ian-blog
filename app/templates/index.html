@@ -1,0 +1,88 @@
+{%extends 'base.html'%}
+
+
+{%block content%}
+<div class=" main jumbotron">
+  <h1>Write Blogs</h1>
+  <h4>{{message}}</h4>
+  {%if current_user.is_authenticated%}
+  <p>Get started by writing your own blog</p><a href="{{url_for('main.new_blog',uname=current_user.username)}}"><button class="btn default-color" type="button" name="button">Here</button></a>
+  {%else%}
+  <p>Pitch your own Idea </p><a><button class="btn default-color" id="login" type="button" title="Login Required To post your Idea" name="button">Here</button></a>
+  {%endif%}
+</div>
+<div class="container-fluid">
+  <div class="row">
+    {%for all in top_blog%}
+    <div class="col-md-3">
+      <div class="one">
+        <div class="on">
+          <div  class="jumbotron title">
+            <h5>{{all.title}}</h5> <span class="animated fadeIn " aria-hidden="true">Latest</span>
+          </div>
+          {{all.blog}}
+          <br>
+          <i class="vom">Category {{all.categ}}</i>
+          <br>
+          <hr class="default-color">
+          <a class="btn default-color" href="/blog/new/review/{{all.id}}">comment</a>
+        </div>
+
+      </div>
+    </div>
+    {%endfor%}
+
+  </div>
+  <br>
+  
+</div>
+
+<!-- Category  starts here-->
+<div class="ai jumbotron">
+    <div class="row">
+      <div class="col-md-3"><div class="cat card">
+        <h1>SPORTS =</h1><hr class="default-color">Category<br><br> <button id="aii" class="btn default-color" type="button" name="button">View Category</button></div>
+      </div>
+      <div class="col-md-3"> <div class="cat card">
+        <h1>TRAVEL<br></h1><hr class="default-color">Category<br><br><button id="robot" class="btn default-color" type="button" name="button">View Category</button></div>
+      </div>
+      <div class="col-md-3"><div class="cat card">
+        <h1>FASHION</h1><hr class="default-color">Category<br><br><button id="ot" class="btn default-color" type="button" name="button">View Category</button>
+      </div></div>
+      <div class="col-md-3"><div class="cat card">
+        <h1>OTHERS<br></h1><hr class="default-color">Category<br><br><button id="dro" class="btn default-color" type="button" name="button">View Category</button>
+      </div></div>
+
+    </div>
+</div>
+
+
+<footer class="page-footer font-small unique-color-dark pt-4">
+
+    <!-- Footer Elements -->
+    <div class="container">
+
+      <!-- Call to action -->
+      <ul class="list-unstyled list-inline text-center py-2">
+        <li class="list-inline-item">
+          <h5 class="mb-1">Subscribe to our newsletter</h5>
+        </li>
+        <li class="list-inline-item">
+          <a href="/subscription" class="btn btn-outline-white btn-rounded">Sign up!</a>
+        </li>
+      </ul>
+      <!-- Call to action -->
+
+    </div>
+    <!-- Footer Elements -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2019 Copyright:
+      <a href="https://mdbootstrap.com/education/bootstrap/"> blog.com</a>
+    </div>
+    <!-- Copyright -->
+
+  </footer>
+  <!-- Footer -->
+
+{%endblock%}
